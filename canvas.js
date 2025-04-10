@@ -192,12 +192,26 @@ export function checkBounds(row, col) {
 export function moveParticle(row, col, newRow, newCol, swap) {
     if (!checkBounds(row, col) || !checkBounds(newRow, newCol)) {
         return false;
-    } else if (getParticle(newRow,newCol) != null){
-        return false
     }
-    
+
+    if (getParticle(newRow, newCol)) {
+        // 👇 Add this check and swap logic 👇
+        // If there is a particle but we can swap then flip the particles
+        if (swap && swap(getParticle(newRow, newCol))) {
+            const temp = grid[newRow][newCol];
+            grid[newRow][newCol] = grid[row][col];
+            grid[row][col] = temp;
+            return true;
+        }
+        // If we can't swap then don't move
+        else {
+            return false;
+        }
+        // 👆 Add this check and swap logic 👆
+    }
+
     grid[newRow][newCol] = grid[row][col];
-    grid[row][col] = null
+    grid[row][col] = null;
     return true;
 }
 
