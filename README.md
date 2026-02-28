@@ -2,4 +2,4 @@
 Vanilla JavaScript, HTML, and CSS falling sand simulator
 
 
-![thumbnail example](thumbnail.png)
+![thumbnail example](assets/thumbnail.png)
